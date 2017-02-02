@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>ODS Graph Visualization</title>
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+        div {
+            border: 2px dotted #ddd;
+            height: 97vh;
+            float: left;
+        }
+        #data {
+            width: 24vw;
+        }
+        #data fieldset {
+            height: 97%;
+        }
+        #datajson {
+            width: 100%;
+            height: 92%;
+        }
+        #render {
+            font-size: 1.2em;
+            width: 100%;
+            height: 6%;
+        }
+        #graph {
+            width: 74vw;
+        }
+    </style>
+</head>
+<body>
+    <div id="data">
+        <fieldset>
+            <legend>Data(JSON):</legend>
+            <textarea id="datajson"></textarea>
+            <button id="render" onclick="render()"><strong>Render</strong></button>
+        </fieldset>
+    </div>
+    <div id="graph"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/sigma.min.js"></script>
+    <script src="customArrow.js"></script>
+    <script>
+    var sig = new sigma({
+        renderers: [
+            {
+                container: document.getElementById('graph'),
+                type: 'canvas'
+            }
+        ],
+        settings: {
+            defaultNodeColor: '#ec5148',
+            defaultArrowSizeMultiplier: 10
+        }
+    });
+    
+    function render() {
+        var datajson = JSON.parse(document.getElementById('datajson').value);
+        sig.graph.clear();
+        sig.graph.read(datajson);
+        sig.refresh();
+    }
+    </script>
+</body>
+</html>

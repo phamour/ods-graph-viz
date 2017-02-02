@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>ODS Graph Visualization</title>
+    <style type="text/css">
+        body {
+            overflow: hidden;
+        }
+        div {
+            border: 2px dotted #ddd;
+            height: 97vh;
+            float: left;
+        }
+        #data {
+            width: 24vw;
+        }
+        #data fieldset {
+            height: 97%;
+        }
+        #graph {
+            width: 74vw;
+        }
+    </style>
+</head>
+<body>
+    <div id="data">
+        <fieldset>
+            <legend>Troyes Bouchon Gauche:</legend>
+            <ul>
+                <li><a id="data-clean" onclick="renderClean()" href="#">Clean (no label no arrow)</a></li>
+                <li><a id="data-directed" onclick="renderDirected()" href="#">Directed (only arrow no label)</a></li>
+                <li><a id="data-full" onclick="renderFull()" href="#">Full (label and arrow)</a></li>
+            </ul>
+        </fieldset>
+    </div>
+    <div id="graph"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/plugins/sigma.parsers.json.min.js"></script>
+    
+    <script src="customArrow.js"></script>
+    <script src="render.js"></script>
+</body>
+</html>
