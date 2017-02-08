@@ -23,7 +23,7 @@
         #render {
             font-size: 1.2em;
             width: 100%;
-            height: 6%;
+            height: 4%;
         }
         #graph {
             width: 74vw;
@@ -36,11 +36,13 @@
             <legend>Data(JSON):</legend>
             <textarea id="datajson"></textarea>
             <button id="render" onclick="render()"><strong>Render</strong></button>
+            <a href="#" onclick="exportImg()">Export PNG</a>
         </fieldset>
     </div>
     <div id="graph"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/sigma.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sigma.js/1.2.0/plugins/sigma.renderers.snapshot.min.js"></script>
     <script src="customArrow.js"></script>
     <script>
     var sig = new sigma({
@@ -61,6 +63,10 @@
         sig.graph.clear();
         sig.graph.read(datajson);
         sig.refresh();
+    }
+
+    function exportImg() {
+        sig.renderers[0].snapshot({download: true});
     }
     </script>
 </body>
